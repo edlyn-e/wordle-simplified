@@ -84,6 +84,9 @@ public class GamePlay {
 					System.out.println("Yay! You guessed it! The secret word is indeed");
 					System.out.print(secretWord);
 					System.out.print("!");
+					System.out.println("You guessed it in ");
+					System.out.print(tries);
+					System.out.println(" attempts!");
 					 gameOver = true; 
 				 }
 			  
