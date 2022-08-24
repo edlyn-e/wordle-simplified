@@ -14,9 +14,9 @@ public class GamePlay {
 		
 		// logging the secret word
 		// TODO don't forget to delete this log! 
-		// System.out.print("The secret word is: ");
-		// System.out.print(secretWord);
-		// System.out.println("\n");
+		 System.out.print("The secret word is: ");
+		 System.out.print(secretWord);
+		 System.out.println("\n");
 
 		// opening line 
 		System.out.println("Welcome to Wordle: Simplified");
@@ -54,7 +54,6 @@ public class GamePlay {
 				playerGuess = guessInput.nextLine().toLowerCase();
 			}
 			
-
 			for (int i = 0; i < 5; i++) {
 				correctWord[i] = secretWord.charAt(i);
 				playerInput[i] = playerGuess.charAt(i); 
@@ -81,17 +80,19 @@ public class GamePlay {
 						playerInput[2] == correctWord[2] && 
 						playerInput[3] == correctWord[3] &&
 						playerInput[4] == correctWord[4]) {
-					System.out.println("Yay! You guessed it! The secret word is indeed");
+					System.out.println("\n");
+				 	System.out.print("Yay! You guessed it! The secret word is indeed: ");
 					System.out.print(secretWord);
 					System.out.print("!");
-					System.out.println("You guessed it in ");
+					System.out.println("\n");
+					System.out.print("You guessed it in ");
 					System.out.print(tries);
 					System.out.println(" attempts!");
 					 gameOver = true; 
 				 }
 			  
 			// Game over, too many guesses
-			if (tries > 6) {
+			if (tries > 5) {
 				gameOver = true; 
 				System.out.println("Oops! Sorry, you did too many guesses. Game over");
 				System.out.println("The secret word was: ");
