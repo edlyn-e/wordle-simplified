@@ -14,14 +14,11 @@ public class GamePlay {
 		
 		// logging the secret word
 		// TODO don't forget to delete this log! 
-		 System.out.print("The secret word is: ");
-		 System.out.print(secretWord);
-		 System.out.println("\n");
+		 System.out.println("The secret word is: " + secretWord + "\n");
 
 		// opening line 
 		System.out.println("Welcome to Wordle: Simplified");
 		System.out.println("Can you guess the five letter word?");
-		System.out.println("\n");
 		
 		int tries = 0; 
 		char[] correctWord = new char[5];
@@ -40,14 +37,17 @@ public class GamePlay {
 		
 		while(!gameOver) {
 			tries++; 
+		
+
+			System.out.println("\n" + "\n" +  "Attempt no: " + tries + "/6");
 			String playerGuess = guessInput.nextLine().toLowerCase(); 
 			
 			if (playerGuess.length() < 5 ) {
-				System.out.println("Oops! You haven't entered enough letters. Please enter a five letter word");
+				System.out.println( "\n" + "Oops! You haven't entered enough letters. Please enter a five letter word");
 			}  
 			
 			if (playerGuess.length() >= 6) {
-				System.out.println("Oops! You've entered too many letters. Please enter a five letter word");
+				System.out.println("\n" +  "Oops! You've entered too many letters. Please enter a five letter word");
 			}
 			
 			while (playerGuess.length() < 5) {
@@ -63,41 +63,33 @@ public class GamePlay {
 			for (int i = 0; i < 5; i++) {
 				
 				if(playerInput[i] == correctWord[i]) {
-					System.out.print('[');
-					System.out.print(correctWord[i]);
-					System.out.print(']');	
+					System.out.print("[" + correctWord[i] + "]");
 				}
 					
 				// printing a blank for each incorrect letter
 				if(playerInput[i] != correctWord[i]) {
 					System.out.print("[_]");
 				}
+				
+				// Game over, too many guesses
+				if (tries > 5 && playerInput[i] != correctWord[i]) {
+					gameOver = true; 
+					System.out.println("\n" + "\n" + "Oops! Sorry, you did too many guesses. Game over");
+					System.out.println("The secret word was: " + secretWord);
+				}
 			}
-			 System.out.println("\n");
-		
+			 
+			 // printing out win message if the player has correctly guessed all letters correctly 
 			 if(playerInput[0] == correctWord[0] &&
 						playerInput[1] == correctWord[1] && 
 						playerInput[2] == correctWord[2] && 
 						playerInput[3] == correctWord[3] &&
 						playerInput[4] == correctWord[4]) {
-					System.out.println("\n");
-				 	System.out.print("Yay! You guessed it! The secret word is indeed: ");
-					System.out.print(secretWord);
-					System.out.print("!");
-					System.out.println("\n");
-					System.out.print("You guessed it in ");
-					System.out.print(tries);
-					System.out.println(" attempts!");
+				 	System.out.println("\n" + "\n" + "Yay! You guessed it! The secret word is indeed: " + secretWord + "!");
+					System.out.println("It took you this many guesses: " + tries);
 					 gameOver = true; 
 				 }
 			  
-			// Game over, too many guesses
-			if (tries > 5) {
-				gameOver = true; 
-				System.out.println("Oops! Sorry, you did too many guesses. Game over");
-				System.out.println("The secret word was: ");
-				System.out.print(secretWord);
-			}
 			
 		}
 	}
